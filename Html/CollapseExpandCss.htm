@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collapsible</title>
+    <style>
+        
+        @keyframes show{
+			 from {height:0px;}
+			to {height:80px;}
+		}
+        
+        @keyframes hide{
+			 from {height:80px;}
+				to {height:0px;}
+		}
+        .hiddenDiv{
+			
+			height:0px;
+			animation:hide;
+			animation-duration:5s;
+			animation-fill-mode: both;
+		}
+		.ShowDiv{
+			
+			height:80px;
+			animation:show;
+			animation-duration:5s;
+			animation-fill-mode: both;
+		}
+		.divA{
+			background-color:#1f618d;
+		}
+		#hidDivA{
+			background-color:#5499c7;
+			 
+		}
+		.divB{
+			background-color:#a93226;
+			
+		}
+		#hidDivB{
+			background-color:#d98880;
+			 
+		}
+		.divC{
+			background-color:#117864;
+			
+		}
+		#hidDivC{
+			background-color:#1abc9c;
+			 
+		}
+		.main{
+			height:auto;
+			width:400px;	
+			color:#fff;
+		} 
+    </style>
+    <script>
+        function toggleA() {
+			if(document.getElementById("hidDivA").classList.contains('hiddenDiv'))
+			{
+				document.getElementById("hidDivA").classList.remove("hiddenDiv");
+				document.getElementById("hidDivA").classList.add("ShowDiv");
+			}	
+			else
+			{
+				document.getElementById("hidDivA").classList.add("hiddenDiv");
+				document.getElementById("hidDivA").classList.remove("ShowDiv");
+			}
+        }
+        function toggleB() {
+            
+			if(document.getElementById("hidDivB").classList.contains('hiddenDiv'))
+			{
+				document.getElementById("hidDivB").classList.remove("hiddenDiv");
+				document.getElementById("hidDivB").classList.add("ShowDiv");
+			}	
+			else
+			{
+				document.getElementById("hidDivB").classList.add("hiddenDiv");
+				document.getElementById("hidDivB").classList.remove("ShowDiv");
+			}
+        }
+        function toggleC() {
+            
+			if(document.getElementById("hidDivC").classList.contains('hiddenDiv'))
+			{
+				document.getElementById("hidDivC").classList.remove("hiddenDiv");
+				document.getElementById("hidDivC").classList.add("ShowDiv");
+			}	
+			else
+			{
+				document.getElementById("hidDivC").classList.add("hiddenDiv");
+				document.getElementById("hidDivC").classList.remove("ShowDiv");
+			}
+        }
+    </script>
+</head>
+<body>
+    <div class="main">
+        <div class="divA" onclick="toggleA()">Div A
+        </div>
+        <div id="hidDivA" class="hiddenDiv">
+        </div>
+        <div class="divB" onclick="toggleB()">Div B
+        </div>
+        <div id="hidDivB" class="hiddenDiv">
+        </div>
+        <div class="divC" onclick="toggleC()">Div C
+        </div>
+        <div id="hidDivC" class="hiddenDiv">
+        </div>
+    </div>
+</body>
+</html>
