@@ -1,0 +1,253 @@
+<html>
+<head>
+<style type='text/css'>
+
+.red {
+    width:800px;
+    height:500px;
+    background:#fff;
+	
+}
+
+.blue {
+    width: 15%;
+    display:inline-block;
+    margin-right: -4px;
+    box-sizing: border-box;
+    padding: 1%;
+	top:20%;
+	position:absolute;
+	
+}
+.mid {
+    width: 60%;
+    display:inline-block;
+    margin-right: -4px;
+    box-sizing: border-box;
+    padding: 1%;
+	margin-left:24%;
+	
+	
+}
+
+
+
+.triangle-left {
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-right: 50px solid darkblue;
+	border-bottom: 25px solid transparent;
+	display:inline-block;
+	float:left;
+}
+
+.triangle-right {
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-left: 50px solid darkblue;
+	border-bottom: 25px solid transparent;
+	float:right;
+}
+.main{
+		margin:1%;
+		width:90%;
+	
+}
+#divHolder{height:75%; width:97%;}
+
+.tiger{
+  background-image: url("https://i.guim.co.uk/img/media/c0e411f5b4c387cd8b275f0794a3618210c5b216/0_339_5081_3048/master/5081.jpg?width=1200&quality=85&auto=format&fit=max&s=f7af7b50f214dab2983a5fb2fe81f3c4");
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.leaf{
+	background-image: url('https://images.pexels.com/photos/4190917/pexels-photo-4190917.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+	background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  
+}
+.modern{
+	background-image: url('https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+	background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+</style>
+
+</head>
+<body onload="loadArray()">
+
+<div class="red">
+    <div class="blue"><div class="triangle-left" onclick="previous()"></div></div>
+    <div class="mid">
+		<div id="divHolder">
+
+		</div>
+	</div>
+    <div class="blue"><div class="triangle-right" onclick="next()"></div></div>
+   
+</div>
+<div class="red" style="margin-left:25%">
+<div>
+Auto Play 
+</div>
+<div>
+
+<label class="switch" onchange="toggler()">
+ <input id="chk" type="checkbox">
+  <span class="slider round"></span>
+</label>
+</div>
+</div>
+
+
+
+
+<script>
+
+var currentIndex;
+var imgarr = new Array();
+var holder = document.getElementById('divHolder');
+
+var loadArray = () =>
+{
+	currentIndex = 0;
+	
+	imgarr[0] = "leaf";
+	imgarr[1] = "tiger";
+	imgarr[2] = "modern";
+	
+	holder.className = imgarr[currentIndex];
+	
+	
+}
+
+var previous = () =>
+{
+	if(currentIndex===0)
+	{
+		currentIndex = 2;
+	}
+	else
+	{
+		currentIndex -=1;
+	}
+	holder.className = imgarr[currentIndex];
+}
+
+var next = () =>
+{
+	if(currentIndex===2)
+	{
+		currentIndex = 0;
+	}
+	else
+	{
+		currentIndex +=1;
+	}
+	holder.className = imgarr[currentIndex];
+}
+
+var intervalId;
+function setAuto(){ intervalId = setInterval(next,3000);}
+function clear(){ if(intervalId){ clearInterval(intervalId);}}
+
+var toggler = () => {
+
+		var promise = new Promise(function(resolve, reject) {
+  
+	  if(document.getElementById('chk').checked) {
+		resolve();
+	  } else {
+		reject();
+	  }
+	});
+   
+promise.
+    then(function () {
+        setAuto();
+    }).
+    catch(function () {
+        clear();
+    });
+}
+
+
+</script>
+</body>
+</html>
